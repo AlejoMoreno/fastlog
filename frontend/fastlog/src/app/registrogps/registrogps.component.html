@@ -1,3 +1,139 @@
-<p>
-  registrogps works!
-</p>
+<style>
+  agm-map {
+    height: 500px;
+    width: 100%;
+  }
+  </style>
+  
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+  
+      <!-- start of Sidebar -->
+      <app-sidebar></app-sidebar>
+      <!-- End of Sidebar -->
+    
+      <!-- Content Wrapper -->
+      <div id="content-wrapper" class="d-flex flex-column">
+    
+        <!-- Main Content -->
+        <div id="content">
+    
+          <!-- Topbar -->
+          <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+    
+            <!-- Sidebar Toggle (Topbar) -->
+            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+              <i class="fa fa-bars"></i>
+            </button>
+    
+            <!-- Topbar Navbar -->
+            <ul class="navbar-nav ml-auto">
+    
+              <div class="topbar-divider d-none d-sm-block"></div>
+    
+              <!-- Nav Item - User Information -->
+              <li class="nav-item dropdown no-arrow">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
+                  <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+                </a>
+                <!-- Dropdown - User Information -->
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                  <a class="dropdown-item" href="/perfil">
+                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Perfil
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="/salir" data-toggle="modal" data-target="#logoutModal">
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Logout
+                  </a>
+                </div>
+              </li>
+    
+            </ul>
+    
+          </nav>
+          <!-- End of Topbar -->
+    
+          <!-- Begin Page Content -->
+          <div class="container-fluid">
+    
+  
+            <div class="col-md-12" >
+              <div class="card border-left-primary shadow h-100 ">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2" style="text-align: center;">
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"></div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800 mb-4 "> 
+                          <input type="hidden" class="form-control" [(ngModel)]="id" name="id" id="id" placeholder="Código Barras">
+                        <input type="text" class="form-control" [(ngModel)]="codigo_barras" name="codigo_barras" id="codigo_barras" placeholder="Código Barras">
+                      </div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800 mb-4 "> 
+                        <input type="text" class="form-control" [(ngModel)]="identificador" name="identificador" id="identificador" placeholder="Identificador">
+                      </div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800 mb-4 "> 
+                        <input type="text" class="form-control" [(ngModel)]="proveedor" name="proveedor" id="proveedor" placeholder="Nombre Proveedor">
+                      </div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800 mb-4 "> 
+                        <input type="text" class="form-control" [(ngModel)]="celular_proveedor" name="celular_proveedor" id="celular_proveedor" placeholder="Celular Proveedor">
+                      </div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800 mb-4 "> 
+                        <div class="btn btn-success" (click)="ngOnGuardar()">Guardar</div>
+                        <div class="btn btn-warning" (click)="ngOnActualizar()">Actualizar</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+<br>
+            <div class="col-md-12" >
+              <div class="card border-left-primary shadow h-100 ">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2" style="text-align: center;">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th>Codigo Barras</th>
+                            <th>Identificador</th>
+                            <th>Nombre Proveedor</th>
+                            <th>Celular Proveedor</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr ng-repeat="gps in gpss">
+                            <td>{{ gps }}</td>
+                            <td>{{ gps }}</td>
+                            <td>{{ gps }}</td>
+                            <td>{{ gps }}</td>
+                            <td><div class="btn btn-warning" (click)="ngOnUpdate()">></div></td>
+                            <td><div class="btn btn-danger" (click)="ngOnDelete()">X</div></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+    
+          </div>
+          <!-- /.container-fluid -->
+    
+        </div>
+        <!-- End of Main Content -->
+    
+        <!-- Footer -->
+        <app-footer></app-footer>
+        <!-- End of Footer -->
+    
+      </div>
+      <!-- End of Content Wrapper -->
+    
+    </div>
+    <!-- End of Page Wrapper -->
+    

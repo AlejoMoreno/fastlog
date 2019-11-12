@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app.routes';
 import { AppComponent } from './app.component';
 
 import { LoginServiceService } from './services/login-service.service';
+import { GpsService } from './services/gps.service';
 
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -58,6 +59,7 @@ import { ReportebodegueroComponent } from './reportebodeguero/reportebodeguero.c
   ],
   providers: [ 
     LoginServiceService,
+    GpsService,
   ],
   bootstrap: [AppComponent]
 })

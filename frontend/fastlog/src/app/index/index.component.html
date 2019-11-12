@@ -21,7 +21,7 @@
           <div class="row">
   
             <!-- login -->
-            <div class="col-xl-3 col-md-6 mb-4" id="login">
+            <div class=" col-md-6 " id="login">
               <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -44,35 +44,9 @@
                 </div>
               </div>
             </div>
-  
-            <!-- Olvido contraseña-->
-            <div class="col-xl-3 col-md-6 mb-4" id="olvido">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2" style="text-align: center;">
-                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Olvido de contraseña</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800 mb-4 "> 
-                          <input type="email" [(ngModel)]="email" name="email" class="form-control" placeholder="Email" required="true">
-                        </div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800 mb-4 ">
-                          <input type="number" [(ngModel)]="telefono" name="telefono" class="form-control" placeholder="telefono" required="true">
-                        </div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800 mb-4 ">
-                          <div class="btn btn-success">recordar contraseña</div>
-                        </div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800 mb-4 ">
-                          <p style="font-size: 9px;cursor: copy;" (click)="ngOnInit()">Entrar</p>
-                        </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
 
             <!-- imagen -->
-            <div class="col-xl-3 col-md-6 mb-4" >
+            <div class="col-md-6" >
               <div class="card border-left-primary shadow h-100 ">
                 <div class="card-body" style="background-image: url(https://d500.epimg.net/cincodias/imagenes/2017/03/08/lifestyle/1488974611_491051_1488974927_noticia_normal.jpg);">
                   <div class="row no-gutters align-items-center">
@@ -96,6 +70,30 @@
               </div>
             </div>
   
+            <!-- Olvido contraseña-->
+            <div class="col-md-6 " id="olvido">
+              <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2" style="text-align: center;">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Olvido de contraseña</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800 mb-4 "> 
+                          <input type="email" [(ngModel)]="email" name="email" class="form-control" placeholder="Email" required="true">
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800 mb-4 ">
+                          <input type="number" [(ngModel)]="telefono" name="telefono" class="form-control" placeholder="telefono" required="true">
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800 mb-4 ">
+                          <div class="btn btn-success">recordar contraseña</div>
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800 mb-4 ">
+                          <p style="font-size: 9px;cursor: copy;" (click)="ngOnInit()">Entrar</p>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>  
             
           </div>
 
