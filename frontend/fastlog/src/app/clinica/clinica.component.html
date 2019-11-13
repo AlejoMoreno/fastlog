@@ -24,7 +24,7 @@
           <!-- Begin Page Content -->
           <div class="container-fluid">
     
-            <h1>Módulo Productos</h1>
+            <h1>Módulo Clinicas</h1>
             <div class="col-md-12" >
               <div class="card border-left-primary shadow h-100 ">
                 <div class="card-body">
@@ -36,7 +36,13 @@
                         <input type="text" class="form-control" [(ngModel)]="nombre" name="nombre" id="nombre" placeholder="Nombre">
                       </div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800 mb-4 "> 
-                        <input type="text" class="form-control" [(ngModel)]="codigo" name="codigo" id="codigo" placeholder="codigo">
+                        <input type="text" class="form-control" [(ngModel)]="cedula" name="cedula" id="cedula" placeholder="Cédula">
+                      </div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800 mb-4 "> 
+                        <input type="text" class="form-control" [(ngModel)]="direccion" name="direccion" id="direccion" placeholder="Direccion">
+                      </div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800 mb-4 "> 
+                        <input type="text" class="form-control" [(ngModel)]="administrador" name="administrador" id="administrador" placeholder="Nombre Administrador">
                       </div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800 mb-4 "> 
                         <div class="btn btn-success" (click)="ngOnGuardar()">Guardar</div>
@@ -57,13 +63,17 @@
                         <thead>
                           <tr>
                             <th>Nombre</th>
-                            <th>Código</th>
+                            <th>Cedula</th>
+                            <th>Dirección</th>
+                            <th>Administrador</th>
                           </tr>
                         </thead>
                         <tbody>
-                          <tr ng-repeat="producto in productos">
-                            <td>{{ producto }}</td>
-                            <td>{{ producto }}</td>
+                          <tr ng-repeat="clinica in clinicas">
+                            <td>{{ clinica }}</td>
+                            <td>{{ clinica }}</td>
+                            <td>{{ clinica }}</td>
+                            <td>{{ clinica }}</td>
                             <td><div class="btn btn-warning" (click)="ngOnUpdate()">></div></td>
                             <td><div class="btn btn-danger" (click)="ngOnDelete()">X</div></td>
                           </tr>

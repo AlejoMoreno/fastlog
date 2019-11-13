@@ -14,21 +14,19 @@ import { ReporteconsultorComponent } from './reporteconsultor/reporteconsultor.c
 import { ReporteruteadorComponent } from './reporteruteador/reporteruteador.component';
 import { ReportetransportadorComponent } from './reportetransportador/reportetransportador.component';
 import { SeguimientorutaComponent } from './seguimientoruta/seguimientoruta.component';
+import { UsuariosComponent } from './usuarios/usuarios.component';
+import { CasacomercialesComponent } from './casacomerciales/casacomerciales.component';
+import { ClinicaComponent } from './clinica/clinica.component';
 
 const APP_ROUTES: Routes = [    
     { path: 'login', component: LoginComponent },
     { path: 'index', component: IndexComponent },
     { path: 'dashboard', component: DashboardComponent },
     { path: 'registroGps', component: RegistrogpsComponent },
-    { path: 'asignacionRuta', component: AsignacionrutaComponent },
     { path: 'cargarProducto', component: CargarproductoComponent },
-    { path: 'generarRemision', component: GenerarremisionComponent },    
-    { path: 'remisionesAsignadas', component: RemisionesasignadasComponent },
-    { path: 'reporteBodeguero', component: ReportebodegueroComponent },
-    { path: 'reporteConsultor', component: ReporteconsultorComponent },
-    { path: 'reporteRuteador', component: ReporteruteadorComponent },
-    { path: 'ReporteTransportador', component: ReportetransportadorComponent },
-    { path: 'seguimientoRuta', component: SeguimientorutaComponent },
+    { path: 'registroUsuario', component: UsuariosComponent },
+    { path: 'registroCasaComercial', component: CasacomercialesComponent },
+    { path: 'registroClinica', component: ClinicaComponent },
     { path: 'salir', component: LoginComponent },
     { path: '**', component: IndexComponent }
 ];

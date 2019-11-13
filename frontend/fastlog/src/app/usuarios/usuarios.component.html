@@ -24,7 +24,7 @@
           <!-- Begin Page Content -->
           <div class="container-fluid">
     
-            <h1>Módulo Productos</h1>
+            <h1>Módulo Usuarios</h1>
             <div class="col-md-12" >
               <div class="card border-left-primary shadow h-100 ">
                 <div class="card-body">
@@ -32,11 +32,14 @@
                     <div class="col mr-2" style="text-align: center;">
                       <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"></div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800 mb-4 "> 
-                          <input type="hidden" class="form-control" [(ngModel)]="id" name="id" id="id" placeholder="Código Barras">
-                        <input type="text" class="form-control" [(ngModel)]="nombre" name="nombre" id="nombre" placeholder="Nombre">
+                          <input type="hidden" class="form-control" [(ngModel)]="id" name="id" id="id" placeholder="">
+                        <input type="text" class="form-control" [(ngModel)]="name" name="name" id="name" placeholder="Name">
                       </div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800 mb-4 "> 
-                        <input type="text" class="form-control" [(ngModel)]="codigo" name="codigo" id="codigo" placeholder="codigo">
+                        <input type="text" class="form-control" [(ngModel)]="email" name="email" id="email" placeholder="Email">
+                      </div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800 mb-4 "> 
+                        <input type="text" class="form-control" [(ngModel)]="password" name="password" id="password" placeholder="Contraseña">
                       </div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800 mb-4 "> 
                         <div class="btn btn-success" (click)="ngOnGuardar()">Guardar</div>
@@ -57,13 +60,16 @@
                         <thead>
                           <tr>
                             <th>Nombre</th>
-                            <th>Código</th>
+                            <th>Email</th>
+                            <th>Contraseña</th>
                           </tr>
                         </thead>
                         <tbody>
-                          <tr ng-repeat="producto in productos">
-                            <td>{{ producto }}</td>
-                            <td>{{ producto }}</td>
+                          <tr ng-repeat="usuario in usuarios">
+                            <td>{{ usuario }}</td>
+                            <td>{{ usuario }}</td>
+                            <td>{{ usuario }}</td>
+                            <td>{{ usuario }}</td>
                             <td><div class="btn btn-warning" (click)="ngOnUpdate()">></div></td>
                             <td><div class="btn btn-danger" (click)="ngOnDelete()">X</div></td>
                           </tr>

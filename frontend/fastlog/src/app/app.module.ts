@@ -11,6 +11,9 @@ import { AppComponent } from './app.component';
 
 import { LoginServiceService } from './services/login-service.service';
 import { GpsService } from './services/gps.service';
+import { ProductoService } from './services/producto.service';
+import { UsuariosService } from './services/usuarios.service';
+import { CasacomercialService } from './services/casacomercial.service';
 
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -27,6 +30,12 @@ import { ReporteconsultorComponent } from './reporteconsultor/reporteconsultor.c
 import { ReportetransportadorComponent } from './reportetransportador/reportetransportador.component';
 import { ReporteruteadorComponent } from './reporteruteador/reporteruteador.component';
 import { ReportebodegueroComponent } from './reportebodeguero/reportebodeguero.component';
+import { UsuariosComponent } from './usuarios/usuarios.component';
+import { CasacomercialesComponent } from './casacomerciales/casacomerciales.component';
+import { ClinicaComponent } from './clinica/clinica.component';
+import { ClinicaService } from './services/clinica.service';
+import { TopnavbarComponent } from './topnavbar/topnavbar.component';
+
 
 @NgModule({
   declarations: [
@@ -45,7 +54,11 @@ import { ReportebodegueroComponent } from './reportebodeguero/reportebodeguero.c
     ReporteconsultorComponent,
     ReportetransportadorComponent,
     ReporteruteadorComponent,
-    ReportebodegueroComponent
+    ReportebodegueroComponent,
+    UsuariosComponent,
+    CasacomercialesComponent,
+    ClinicaComponent,
+    TopnavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -60,6 +73,10 @@ import { ReportebodegueroComponent } from './reportebodeguero/reportebodeguero.c
   providers: [ 
     LoginServiceService,
     GpsService,
+    ProductoService,
+    UsuariosService,
+    CasacomercialService,
+    ClinicaService
   ],
   bootstrap: [AppComponent]
 })
