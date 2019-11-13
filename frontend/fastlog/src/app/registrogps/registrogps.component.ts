@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 import { GpsService } from '../services/gps.service';
 
@@ -9,6 +10,7 @@ import { GpsService } from '../services/gps.service';
 })
 export class RegistrogpsComponent implements OnInit {
 
+
   codigo_barras = '';
   identificador = '';
   proveedor = '';
@@ -18,6 +20,7 @@ export class RegistrogpsComponent implements OnInit {
   public gpss: gps[] = [];
 
   constructor(private gpsService: GpsService) { }
+
 
   ngOnInit() {
     console.log(this.gpss);
@@ -77,6 +80,7 @@ export class RegistrogpsComponent implements OnInit {
       }
     );
   }
+
 }
 
 // just an interface for type safety.
