@@ -16,22 +16,22 @@ use Illuminate\Http\Request;
 Route::post('login', 'UserController@login');
 Route::post('register', 'UserController@register');
 
-
-Route::resource('clinicas', 'ClinicasController');
-Route::resource('comercialcasas', 'ComercialcasasController');
-Route::resource('estados', 'EstadosController');
-Route::resource('gps', 'gpsController');
-Route::resource('gpsseguimientos', 'GpsseguimientosController');
-Route::resource('historiallogins', 'HistorialloginsController');
-Route::resource('menus', 'MenusController');
-Route::resource('productos', 'ProductosController');
-Route::resource('remisiones', 'RemisionesController');
-Route::resource('remisionesfirmas', 'RemisionesfirmasController');
-Route::resource('remisionesproductos', 'RemisionesproductosController');
-Route::resource('roles', 'RolesController');
-Route::resource('rutas', 'RutasController');
-
 //mirar luego como hacer el middleware
 
 
+/** COMIENZO CON EL API */
 
+/**
+ * Rutas principles para clinicas 
+ * @param create
+ * @param show
+ * @param showAll
+ * @param destroy
+ * @param update
+ * Cada uno con su get o post desde la base de clinicas
+ */
+Route::post('clinicas/create', 'ClinicasController@create');
+Route::get('clinicas/{id}', 'ClinicasController@show');
+Route::get('clinicas', 'ClinicasController@showAll');
+Route::post('clinicas/delete', 'ClinicasController@destroy');
+Route::post('clinicas/update', 'ClinicasController@update');
