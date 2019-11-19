@@ -21,9 +21,30 @@ class GpsseguimientosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+         //Se crea la instancia del objeto clinicas
+         $gpsse = new gpsse();
+         //Se asignan valores a cada uno de los atributos del objeto
+         $gpsse->longitud = $request->longitud;
+       $gpsse->latitud = $request->latitud;
+       $gpsse->id_gps = $request->id_gps;
+         //se llama a la funcion save para guardar en la base de datos dicho objeto
+         //se evalua si fue correcto o incorrecto
+         if($gpsse->save()){
+             //se retorna la informacion que sea necesaria
+             return array([
+                 "respuesta"=>true,
+                 "body"=>$gpsse
+             ]);
+         }
+         else{
+             //se retorna la informacion que sea necesaria
+             return array([
+                 "respuesta"=>false,
+                 "body"=>"Error en guardar"
+             ]);
+         }        
     }
 
     /**
@@ -43,8 +64,48 @@ class GpsseguimientosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function showAll(Request $request)
+    {
+        //se instancia una lista de clinicas donde en sql buscara todas sin importar condicion
+        $gpsse = gpsse::all();
+        //se verifica si la lista esta llena
+        if(sizeOf($gpsse)>0){
+            //se retorna la informacion que sea necesaria
+            return array([
+                "respuesta"=>true,
+                "body"=>$gpsse
+            ]);
+        }
+        else{
+            //se retorna la informacion que sea necesaria
+            return array([
+                "respuesta"=>false,
+                "body"=>"No existen resultados para la busqueda"
+            ]);
+        }
+    }
+
+
     public function show($id)
     {
+         //se instancia una lista de objetos devueltos por la base de datos donde se busca id = $id
+         $gpsse = gpsse::where('id','=',$id)->get();
+         //se verifica que la lista este llena
+         if(sizeOf($gpsse)>0){
+             //se retorna la informacion que sea necesaria
+             return array([
+                 "respuesta"=>true,
+                 "body"=>$gpsse
+             ]);
+         }
+         else{
+             //se retorna la informacion que sea necesaria
+             return array([
+                 "respuesta"=>false,
+                 "body"=>"No existen resultados para la busqueda"
+             ]);
+         }
+        
         //
     }
 
@@ -68,7 +129,27 @@ class GpsseguimientosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+       //se instancia un objeto devuelto por la base de datos donde se busca id = $id
+       $gpsse = gpsse::where('id','=',$request->id)->fisrt();
+       //Se asignan valores a cada uno de los atributos del objeto
+       $gpsse->longitud = $request->longitud;
+       $gpsse->latitud = $request->latitud;
+       $gpsse->id_gps = $request->id_gps;
+       //se evalua si fue correcto o incorrecto
+       if($gpsse->save()){
+           //se retorna la informacion que sea necesaria
+           return array([
+               "respuesta"=>true,
+               "body"=>$gpsse
+           ]);
+       }
+       else{
+           //se retorna la informacion que sea necesaria
+           return array([
+               "respuesta"=>false,
+               "body"=>"Error en actualizar"
+           ]);
+       }  
     }
 
     /**
@@ -79,6 +160,21 @@ class GpsseguimientosController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //se instancia un objeto devuelto por la base de datos donde se busca id = $id
+        $gpsse = gpsse::where('id','=',$id)->fisrt();
+        //se verifica que se elimine correctamente
+        if($gpsse->delete()){
+            return array([
+                "respuesta"=>true,
+                "body"=>$gpsse
+            ]);
+        }
+        else{
+            //se retorna la informacion que sea necesaria
+            return array([
+                "respuesta"=>false,
+                "body"=>"Error no se pudo realizar la eliminación"
+            ]);
+        }
     }
 }

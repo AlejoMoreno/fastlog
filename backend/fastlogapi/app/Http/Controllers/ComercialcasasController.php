@@ -21,9 +21,33 @@ class ComercialcasasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         //
+         //Se crea la instancia del objeto clinicas
+         $comercialcli = new comercialcli();
+         //Se asignan valores a cada uno de los atributos del objeto
+         $comercialcli->nombre = $request->nombre;
+         $comercialcli->cedula = $request->cedula;
+         $comercialcli->direccion = $request->direccion;
+         $comercialcli->administrador = $request->administrador;
+         $comercialcli->asesor = $request->asesor;
+         //se llama a la funcion save para guardar en la base de datos dicho objeto
+         //se evalua si fue correcto o incorrecto
+         if($comercialcli->save()){
+             //se retorna la informacion que sea necesaria
+             return array([
+                 "respuesta"=>true,
+                 "body"=>$comercialcli
+             ]);
+         }
+         else{
+             //se retorna la informacion que sea necesaria
+             return array([
+                 "respuesta"=>false,
+                 "body"=>"Error en guardar"
+             ]);
+         }   
     }
 
     /**
@@ -43,8 +67,52 @@ class ComercialcasasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function showAll(Request $request)
+    {
+        //se instancia una lista de clinicas donde en sql buscara todas sin importar condicion
+        $comercialcli = comercialcli::all();
+        //se verifica si la lista esta llena
+        if(sizeOf($comercialcli)>0){
+            //se retorna la informacion que sea necesaria
+            return array([
+                "respuesta"=>true,
+                "body"=>$comercialcli
+            ]);
+        }
+        else{
+            //se retorna la informacion que sea necesaria
+            return array([
+                "respuesta"=>false,
+                "body"=>"No existen resultados para la busqueda"
+            ]);
+        }
+    }
+
+
+
+
+
+
     public function show($id)
     {
+         //se instancia una lista de objetos devueltos por la base de datos donde se busca id = $id
+         $comercialcli = comercialcli::where('id','=',$id)->get();
+         //se verifica que la lista este llena
+         if(sizeOf($comercialcli)>0){
+             //se retorna la informacion que sea necesaria
+             return array([
+                 "respuesta"=>true,
+                 "body"=>$comercialcli
+             ]);
+         }
+         else{
+             //se retorna la informacion que sea necesaria
+             return array([
+                 "respuesta"=>false,
+                 "body"=>"No existen resultados para la busqueda"
+             ]);
+         }
+        
         //
     }
 
@@ -69,6 +137,29 @@ class ComercialcasasController extends Controller
     public function update(Request $request, $id)
     {
         //
+         //se instancia un objeto devuelto por la base de datos donde se busca id = $id
+         $comercialcli = comercialcli::where('id','=',$request->id)->fisrt();
+         //Se asignan valores a cada uno de los atributos del objeto
+         $comercialcli->nombre = $request->nombre;
+         $comercialcli->cedula = $request->cedula;
+         $comercialcli->direccion = $request->direccion;
+         $comercialcli->administrador = $request->administrador;
+         $comercialcli->asesor = $request->asesor;
+         //se evalua si fue correcto o incorrecto
+         if($comercialcli->save()){
+             //se retorna la informacion que sea necesaria
+             return array([
+                 "respuesta"=>true,
+                 "body"=>$comercialcli
+             ]);
+         }
+         else{
+             //se retorna la informacion que sea necesaria
+             return array([
+                 "respuesta"=>false,
+                 "body"=>"Error en actualizar"
+             ]);
+         } 
     }
 
     /**
@@ -79,6 +170,23 @@ class ComercialcasasController extends Controller
      */
     public function destroy($id)
     {
+         //se instancia un objeto devuelto por la base de datos donde se busca id = $id
+         $comercialcli = comercialcli::where('id','=',$id)->fisrt();
+         //se verifica que se elimine correctamente
+         if($comercialcli->delete()){
+             return array([
+                 "respuesta"=>true,
+                 "body"=>$comercialcli
+             ]);
+         }
+         else{
+             //se retorna la informacion que sea necesaria
+             return array([
+                 "respuesta"=>false,
+                 "body"=>"Error no se pudo realizar la eliminación"
+             ]);
+         }
+        
         //
     }
 }

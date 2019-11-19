@@ -21,8 +21,34 @@ class RutasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+        //Se crea la instancia del objeto clinicas
+        $rutas = new rutas();
+        //Se asignan valores a cada uno de los atributos del objeto
+        $rutas->id_remision = $request->id_remision;
+        $rutas->asignador = $request->asignador;
+        $rutas->transportador = $request->transportador;
+        $rutas->longitud = $request->longitud;
+        $rutas->latitud = $request->latitud;
+        $rutas->abierta = $request->abierta;
+        $rutas->lugar = $request->lugar;
+        //se llama a la funcion save para guardar en la base de datos dicho objeto
+        //se evalua si fue correcto o incorrecto
+        if($rutas->save()){
+            //se retorna la informacion que sea necesaria
+            return array([
+                "respuesta"=>true,
+                "body"=>$rutas
+            ]);
+        }
+        else{
+            //se retorna la informacion que sea necesaria
+            return array([
+                "respuesta"=>false,
+                "body"=>"Error en guardar"
+            ]);
+        }
         //
     }
 
@@ -37,6 +63,27 @@ class RutasController extends Controller
         //
     }
 
+
+    public function showAll(Request $request)
+    {
+        //se instancia una lista de clinicas donde en sql buscara todas sin importar condicion
+        $rutas = rutas::all();
+        //se verifica si la lista esta llena
+        if(sizeOf($rutas)>0){
+            //se retorna la informacion que sea necesaria
+            return array([
+                "respuesta"=>true,
+                "body"=>$rutas
+            ]);
+        }
+        else{
+            //se retorna la informacion que sea necesaria
+            return array([
+                "respuesta"=>false,
+                "body"=>"No existen resultados para la busqueda"
+            ]);
+        }
+    }
     /**
      * Display the specified resource.
      *
@@ -45,7 +92,23 @@ class RutasController extends Controller
      */
     public function show($id)
     {
-        //
+        //se instancia una lista de objetos devueltos por la base de datos donde se busca id = $id
+        $rutas = rutas::where('id','=',$id)->get();
+        //se verifica que la lista este llena
+        if(sizeOf($rutas)>0){
+            //se retorna la informacion que sea necesaria
+            return array([
+                "respuesta"=>true,
+                "body"=>$rutas
+            ]);
+        }
+        else{
+            //se retorna la informacion que sea necesaria
+            return array([
+                "respuesta"=>false,
+                "body"=>"No existen resultados para la busqueda"
+            ]);
+        }
     }
 
     /**
@@ -68,7 +131,31 @@ class RutasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      //se instancia un objeto devuelto por la base de datos donde se busca id = $id
+      $rutas = rutas::where('id','=',$request->id)->fisrt();
+      //Se asignan valores a cada uno de los atributos del objeto
+      $rutas->id_remision = $request->id_remision;
+        $rutas->asignador = $request->asignador;
+        $rutas->transportador = $request->transportador;
+        $rutas->longitud = $request->longitud;
+        $rutas->latitud = $request->latitud;
+        $rutas->abierta = $request->abierta;
+        $rutas->lugar = $request->lugar;
+      //se evalua si fue correcto o incorrecto
+      if($rutas->save()){
+          //se retorna la informacion que sea necesaria
+          return array([
+              "respuesta"=>true,
+              "body"=>$rutas
+          ]);
+      }
+      else{
+          //se retorna la informacion que sea necesaria
+          return array([
+              "respuesta"=>false,
+              "body"=>"Error en actualizar"
+          ]);
+      }      
     }
 
     /**
@@ -79,6 +166,21 @@ class RutasController extends Controller
      */
     public function destroy($id)
     {
-        //
+         //se instancia un objeto devuelto por la base de datos donde se busca id = $id
+         $rutas = rutas::where('id','=',$id)->fisrt();
+         //se verifica que se elimine correctamente
+         if($rutas->delete()){
+             return array([
+                 "respuesta"=>true,
+                 "body"=>$rutas
+             ]);
+         }
+         else{
+             //se retorna la informacion que sea necesaria
+             return array([
+                 "respuesta"=>false,
+                 "body"=>"Error no se pudo realizar la eliminación"
+             ]);
+         }
     }
 }

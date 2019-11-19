@@ -21,9 +21,31 @@ class GpsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+       //Se crea la instancia del objeto clinicas
+       $gps = new gps();
+       //Se asignan valores a cada uno de los atributos del objeto
+       $gps->codigo_barras = $request->codigo_barras;
+       $gps->proveedor = $request->proveedor;
+       $gps->identificador = $request->identificador;
+       $gps->celular_proveedor = $request->celular_proveedor;
+       //se llama a la funcion save para guardar en la base de datos dicho objeto
+       //se evalua si fue correcto o incorrecto
+       if($gps->save()){
+           //se retorna la informacion que sea necesaria
+           return array([
+               "respuesta"=>true,
+               "body"=>$gps
+           ]);
+       }
+       else{
+           //se retorna la informacion que sea necesaria
+           return array([
+               "respuesta"=>false,
+               "body"=>"Error en guardar"
+           ]);
+       }        
     }
 
     /**
@@ -34,7 +56,7 @@ class GpsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       
     }
 
     /**
@@ -43,9 +65,47 @@ class GpsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function showAll($id)
+    {
+          //se instancia una lista de clinicas donde en sql buscara todas sin importar condicion
+        $gps = gps::all();
+        //se verifica si la lista esta llena
+        if(sizeOf($gps)>0){
+            //se retorna la informacion que sea necesaria
+            return array([
+                "respuesta"=>true,
+                "body"=>$gps
+            ]);
+        }
+        else{
+            //se retorna la informacion que sea necesaria
+            return array([
+                "respuesta"=>false,
+                "body"=>"No existen resultados para la busqueda"
+            ]);
+        }
+    }
+
+
     public function show($id)
     {
-        //
+        //se instancia una lista de objetos devueltos por la base de datos donde se busca id = $id
+        $gps = gps::where('id','=',$id)->get();
+        //se verifica que la lista este llena
+        if(sizeOf($gps)>0){
+            //se retorna la informacion que sea necesaria
+            return array([
+                "respuesta"=>true,
+                "body"=>$gps
+            ]);
+        }
+        else{
+            //se retorna la informacion que sea necesaria
+            return array([
+                "respuesta"=>false,
+                "body"=>"No existen resultados para la busqueda"
+            ]);
+        }
     }
 
     /**
@@ -56,8 +116,10 @@ class GpsController extends Controller
      */
     public function edit($id)
     {
-        //
-    }
+      
+        
+
+       }
 
     /**
      * Update the specified resource in storage.
@@ -68,7 +130,28 @@ class GpsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+           //se instancia un objeto devuelto por la base de datos donde se busca id = $id
+           $gps = gps::where('id','=',$request->id)->fisrt();
+           //Se asignan valores a cada uno de los atributos del objeto
+           $gps->codigo_barras = $request->codigo_barras;
+           $gps->proveedor = $request->proveedor;
+           $gps->identificador = $request->identificador;
+           $gps->celular_proveedor = $request->celular_proveedor;
+           //se evalua si fue correcto o incorrecto
+           if($gps->save()){
+               //se retorna la informacion que sea necesaria
+               return array([
+                   "respuesta"=>true,
+                   "body"=>$clinica
+               ]);
+           }
+           else{
+               //se retorna la informacion que sea necesaria
+               return array([
+                   "respuesta"=>false,
+                   "body"=>"Error en actualizar"
+               ]);
+           } 
     }
 
     /**
@@ -79,6 +162,31 @@ class GpsController extends Controller
      */
     public function destroy($id)
     {
-        //
+      //se instancia un objeto devuelto por la base de datos donde se busca id = $id
+      $gps = gps::where('id','=',$id)->fisrt();
+      //se verifica que se elimine correctamente
+      if($gps->delete()){
+          return array([
+              "respuesta"=>true,
+              "body"=>$gps
+          ]);
+      }
+      else{
+          //se retorna la informacion que sea necesaria
+          return array([
+              "respuesta"=>false,
+              "body"=>"Error no se pudo realizar la eliminación"
+          ]);
+      }
+
     }
+
+    public function registergps(Request $request)
+    {
+       
+    
+    }
+
+
+    
 }
