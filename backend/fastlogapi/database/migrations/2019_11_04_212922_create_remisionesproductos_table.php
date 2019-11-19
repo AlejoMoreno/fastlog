@@ -15,6 +15,7 @@ class CreateRemisionesproductosTable extends Migration
     {
         Schema::create('remisionesproductos', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('id_remision');
             $table->integer('id_producto');
             $table->integer('id_estado');
             $table->timestamps();
